@@ -5,13 +5,11 @@ import org.apache.spark.sql.expressions.UserDefinedFunction
 import org.apache.spark.sql.functions.{col, input_file_name, posexplode, udf}
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.{DataFrame, Dataset, SparkSession}
+import CommonTermsStandardiser.matchActivityType
 
 object ActivityFileParser {
 
-
-
-
-  private val matchActivityTypeUDF: UserDefinedFunction = udf(CommonTermsStandardiser.matchActivityType(_:String):String)
+  private val matchActivityTypeUDF: UserDefinedFunction = udf(matchActivityType(_:String):String)
 
   case class ActivityRecord(
                               activityName: String,

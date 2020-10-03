@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="sbt 1" modules="enduranceactivityfileanalyser_1412" />
+    <profile name="sbt 1" modules="com_stevebowser_enduranceactivityfileanalyser,enduranceactivityfileanalyser_1412" />
   </component>
 </project>
