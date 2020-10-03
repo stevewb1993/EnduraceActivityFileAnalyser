@@ -1,4 +1,4 @@
-name := "EnduranceActivityFileAnalyser"
+name := "com/stevebowser/enduranceactivityfileanalyser"
 
 version := "0.1"
 

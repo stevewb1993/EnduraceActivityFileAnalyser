@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/EnduranceActivityFileAnalyser.iml" filepath="$PROJECT_DIR$/.idea/modules/EnduranceActivityFileAnalyser.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/EnduranceActivityFileAnalyser-build.iml" filepath="$PROJECT_DIR$/.idea/modules/EnduranceActivityFileAnalyser-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/enduranceactivityfileanalyser_1412.iml" filepath="$PROJECT_DIR$/.idea/modules/enduranceactivityfileanalyser_1412.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/enduranceactivityfileanalyser_1412-build.iml" filepath="$PROJECT_DIR$/.idea/modules/enduranceactivityfileanalyser_1412-build.iml" />
     </modules>
   </component>
 </project>
