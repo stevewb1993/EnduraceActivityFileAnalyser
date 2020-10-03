@@ -2,10 +2,11 @@ package com.stevebowser.enduranceactivityfileanalyser
 
 import org.apache.spark.sql.execution.streaming.FileStreamSource.Timestamp
 import org.apache.spark.sql.expressions.UserDefinedFunction
-import org.apache.spark.sql.functions.{col, input_file_name, posexplode, udf}
+import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.{DataFrame, Dataset, SparkSession}
 import CommonTermsStandardiser.matchActivityType
+import org.apache.spark.sql.expressions.Window
 
 object ActivityFileParser {
 
@@ -96,4 +97,6 @@ object ActivityFileParser {
       .schema(rawGPXSchema)
       .load(path))
   }
+
+
 }
