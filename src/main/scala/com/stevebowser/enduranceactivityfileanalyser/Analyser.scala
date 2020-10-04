@@ -5,7 +5,7 @@ import java.util.Properties
 import com.stevebowser.enduranceactivityfileanalyser.fileparser.FileParser
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.{Dataset, SparkSession}
-
+import com.stevebowser.enduranceactivityfileanalyser.analysis.PersonalBestAnalyser.calculatePersonalBests
 import scala.io.Source
 
 object Analyser {
@@ -16,9 +16,13 @@ object Analyser {
       .config(getSparkAppConf)
       .getOrCreate()
 
-    val testActivityDataset : Dataset[FileParser.ActivityRecord] = FileParser.readGPXToDataFrame("Data/activity_4900763877.gpx", spark)
+    val testActivityDataset : Dataset[FileParser.ActivityRecord] = FileParser.readGPXToDataFrame("Data/", spark)
 
     testActivityDataset.show
+
+    val personalBests = calculatePersonalBests(testActivityDataset)
+
+    personalBests.show
 
     spark.stop()
 

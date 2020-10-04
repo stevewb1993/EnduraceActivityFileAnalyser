@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="de4b3ef0-408c-4464-aca8-03b6ea67f51c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spark.conf" beforeDir="false" afterPath="$PROJECT_DIR$/spark.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/Analyser.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/Analyser.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/analysis/PersonalBestAnalyser.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/analysis/PersonalBestAnalyser.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,26 +204,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="550" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601720660416" />
-    <state width="1537" height="227" key="GridCell.Tab.0.bottom" timestamp="1601820586499">
+    <state width="1537" height="227" key="GridCell.Tab.0.bottom" timestamp="1601827245788">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="227" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601820586499" />
-    <state width="1537" height="227" key="GridCell.Tab.0.center" timestamp="1601820586499">
+    <state width="1537" height="227" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601827245788" />
+    <state width="1537" height="227" key="GridCell.Tab.0.center" timestamp="1601827245788">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="227" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1601820586499" />
-    <state width="1537" height="227" key="GridCell.Tab.0.left" timestamp="1601820586499">
+    <state width="1537" height="227" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1601827245788" />
+    <state width="1537" height="227" key="GridCell.Tab.0.left" timestamp="1601827245788">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="227" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1601820586499" />
-    <state width="1537" height="227" key="GridCell.Tab.0.right" timestamp="1601820586499">
+    <state width="1537" height="227" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1601827245788" />
+    <state width="1537" height="227" key="GridCell.Tab.0.right" timestamp="1601827245788">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="227" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1601820586499" />
+    <state width="1537" height="227" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1601827245788" />
+    <state width="1537" height="282" key="GridCell.Tab.1.bottom" timestamp="1601825368424">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1537" height="282" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601825368424" />
+    <state width="1537" height="282" key="GridCell.Tab.1.center" timestamp="1601825368424">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1537" height="282" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1601825368424" />
+    <state width="1537" height="282" key="GridCell.Tab.1.left" timestamp="1601825368424">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1537" height="282" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1601825368424" />
+    <state width="1537" height="282" key="GridCell.Tab.1.right" timestamp="1601825368424">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1537" height="282" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1601825368424" />
     <state x="167" y="27" width="1068" height="708" key="SettingsEditor" timestamp="1601721266055">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="167" y="27" width="1068" height="708" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1601721266055" />
+    <state x="579" y="327" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601826172234">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="579" y="327" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1601826172234" />
     <state x="476" y="235" key="org.jetbrains.plugins.scala.testingSupport.ScalaTestCreator$$anon$1$$anon$2" timestamp="1601804712881">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
