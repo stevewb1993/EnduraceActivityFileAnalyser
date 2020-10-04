@@ -5,7 +5,7 @@ import java.util.Properties
 import com.stevebowser.enduranceactivityfileanalyser.fileparser.FileParser
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.{Dataset, SparkSession}
-import com.stevebowser.enduranceactivityfileanalyser.analysis.PersonalBestAnalyser.calculatePersonalBests
+import com.stevebowser.enduranceactivityfileanalyser.analysis.PersonalBestAnalyser.{calculateDistancePersonalBests, calculateSensorPersonalBests}
 import scala.io.Source
 
 object Analyser {
@@ -20,9 +20,13 @@ object Analyser {
 
     testActivityDataset.show
 
-    val personalBests = calculatePersonalBests(testActivityDataset, 5)
+    val personalBests = calculateDistancePersonalBests(testActivityDataset, 5)
 
     personalBests.show
+
+    val sensorBests = calculateSensorPersonalBests(testActivityDataset, 600L)
+
+    sensorBests.show()
 
     spark.stop()
 
