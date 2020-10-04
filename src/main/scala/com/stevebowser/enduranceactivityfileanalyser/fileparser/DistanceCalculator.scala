@@ -7,7 +7,7 @@ import org.apache.spark.sql.types.DataType
 private object DistanceCalculator {
 
   //add the lag of GPS Position for calculating distance between each track point
-  def addLagTimeAndPosition(df: DataFrame) : DataFrame = {
+  private def addLagTimeAndPosition(df: DataFrame) : DataFrame = {
     val previousTrackPointWindow = Window.partitionBy("activityId").orderBy("activityTrackPoint")
     df
       .withColumn("lagLongitude", lag(col("longitude"), 1).over(previousTrackPointWindow))
@@ -17,7 +17,7 @@ private object DistanceCalculator {
 
   //adapted from https://gist.github.com/pavlov99/bd265be244f8a84e291e96c5656ceb5c
   //used for calculating distance between two GPS latitude and longitude points
-  def addDistanceFromLastPoint (df: DataFrame) : DataFrame = {
+  private def addDistanceFromLastPoint (df: DataFrame) : DataFrame = {
     //intermediary calculation of distance
     df.withColumn("a", org.apache.spark.sql.functions.pow(sin(radians(col("latitude") - col("lagLatitude")) / 2), 2) + cos(radians(col("lagLatitude"))) * cos(radians(col("latitude"))) * org.apache.spark.sql.functions.pow(sin(radians(col("longitude") - col("lagLongitude")) / 2), 2))
       //final distance calculation
@@ -26,7 +26,7 @@ private object DistanceCalculator {
   }
 
   //used for calculating time between points
-  def addTimeFromLastPoint (df: DataFrame) : DataFrame = {
+  private def addTimeFromLastPoint (df: DataFrame) : DataFrame = {
     //intermediary calculation of distance
     df.withColumn("timeFromLastPoint", df("time").cast("long") - df("lagTime").cast("long"))
   }

@@ -16,5 +16,7 @@ object Analyser {
 
     testActivityDataset.show
 
+    spark.stop()
+
   }
 }
