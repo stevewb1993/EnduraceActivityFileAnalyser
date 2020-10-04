@@ -4,7 +4,7 @@ private object CommonTermsStandardiser {
 
   def matchActivityType (activityName: String) : String = {
     val runPattern = "run".r
-    val cyclePattern = "cycle".r
+    val cyclePattern = "cyc|bik".r
     val swimPattern = "swim".r
 
     if (runPattern.findFirstIn(activityName.toLowerCase()).nonEmpty) "run"

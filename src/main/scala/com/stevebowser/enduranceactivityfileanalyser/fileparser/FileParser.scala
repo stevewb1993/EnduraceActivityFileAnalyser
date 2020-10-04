@@ -104,9 +104,6 @@ object FileParser {
     val unNestedGPXDf = unNestGPXDf(rawGPXDf)
 
     //add cumulative statistics and return
-
-    println(addCumulativeStatistics(unNestedGPXDf).schema)
-
     addCumulativeStatistics(unNestedGPXDf).as[ActivityRecord]
 
   }
