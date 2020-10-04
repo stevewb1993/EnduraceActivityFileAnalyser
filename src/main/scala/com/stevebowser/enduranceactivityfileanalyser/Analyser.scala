@@ -20,7 +20,7 @@ object Analyser {
 
     testActivityDataset.show
 
-    val personalBests = calculatePersonalBests(testActivityDataset)
+    val personalBests = calculatePersonalBests(testActivityDataset, 5)
 
     personalBests.show
 

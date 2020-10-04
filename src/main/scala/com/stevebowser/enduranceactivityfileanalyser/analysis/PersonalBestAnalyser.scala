@@ -7,9 +7,7 @@ import org.apache.spark.sql.functions._
 
 object PersonalBestAnalyser {
 
-  def calculatePersonalBests (ds: Dataset[ActivityRecord]) : DataFrame = {
-
-    val distance = 5
+  def calculatePersonalBests (ds: Dataset[ActivityRecord], distance : Int) : DataFrame = {
 
     //in order to calculate the personal bests in each activity, we must join the activity table onto itself to find all rows in the activity which have past the required distance
     val ds2 = ds
