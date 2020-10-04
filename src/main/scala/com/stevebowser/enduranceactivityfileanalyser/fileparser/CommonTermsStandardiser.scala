@@ -1,4 +1,4 @@
-package com.stevebowser.enduranceactivityfileanalyser
+package com.stevebowser.enduranceactivityfileanalyser.fileparser
 
 private object CommonTermsStandardiser {
 

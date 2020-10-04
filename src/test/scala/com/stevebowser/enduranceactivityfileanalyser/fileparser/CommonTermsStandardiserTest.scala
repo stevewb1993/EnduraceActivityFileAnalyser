@@ -1,6 +1,7 @@
-import org.scalatest
+package com.stevebowser.enduranceactivityfileanalyser.fileparser
+
+import com.stevebowser.enduranceactivityfileanalyser.fileparser.CommonTermsStandardiser.matchActivityType
 import org.scalatest.flatspec.AnyFlatSpec
-import com.stevebowser.enduranceactivityfileanalyser.CommonTermsStandardiser.matchActivityType
 
 class CommonTermsStandardiserTest extends AnyFlatSpec{
 

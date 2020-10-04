@@ -1,5 +1,6 @@
 package com.stevebowser.enduranceactivityfileanalyser
 
+import com.stevebowser.enduranceactivityfileanalyser.fileparser.FileParser
 import org.apache.spark.sql.{Dataset, SparkSession}
 
 object Analyser {
@@ -11,10 +12,9 @@ object Analyser {
       .master("local[3]")
       .getOrCreate()
 
-    val testActivityDataset : Dataset[ActivityFileParser.ActivityRecord] = ActivityFileParser.readGPXToDataFrame("Data/activity_4900763877.gpx", spark)
+    val testActivityDataset : Dataset[FileParser.ActivityRecord] = FileParser.readGPXToDataFrame("Data/activity_4900763877.gpx", spark)
 
     testActivityDataset.show
-
 
   }
 }

@@ -1,17 +1,18 @@
-package com.stevebowser.enduranceactivityfileanalyser
+package com.stevebowser.enduranceactivityfileanalyser.fileparser
 
+import CommonTermsStandardiser.matchActivityType
 import org.apache.spark.sql.execution.streaming.FileStreamSource.Timestamp
 import org.apache.spark.sql.expressions.UserDefinedFunction
-import org.apache.spark.sql.functions._
+import org.apache.spark.sql.functions.{col, input_file_name, posexplode, udf}
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.{DataFrame, Dataset, SparkSession}
-import CommonTermsStandardiser.matchActivityType
-import org.apache.spark.sql.expressions.Window
+import DistanceCalculator.addCumulativeStatistics
 
-object ActivityFileParser {
+object FileParser {
 
   private val matchActivityTypeUDF: UserDefinedFunction = udf(matchActivityType(_:String):String)
 
+  //thiis is the standardised output of the dataset from calls to parse activity files
   case class ActivityRecord(
                               activityName: String,
                               originalActivityType: String,
@@ -23,9 +24,10 @@ object ActivityFileParser {
                               longitude: Double,
                               heartRate: Integer,
                               cadence: Integer,
-                              power: Integer
+                              power: Integer,
+                              cumulativeDistanceKm: Double,
+                              cumulativeTime: Long
                             )
-
 
   def readGPXToDataFrame (path: String, spark: SparkSession) : Dataset[ActivityRecord] = {
     //define schema of GPX file so data types are read correctly
@@ -68,7 +70,7 @@ object ActivityFileParser {
     import spark.implicits._
 
     //this function parses the GPX data into standardised format
-    def unNestGPXDf (df: DataFrame) : Dataset[ActivityRecord] = df
+    def unNestGPXDf (df: DataFrame) : DataFrame = df
       //Data is read in at the top level of the json. All of the data of interest is deeply nested so needs to be exploded to facilitate aggregations
       .select(col("trk.name"),col("trk.type"),posexplode(col("trk.trkseg.trkpt")))
       //rename the output of the exploded column so it is more descriptive
@@ -89,13 +91,21 @@ object ActivityFileParser {
       .withColumn("power", col("trackPointDetails.extensions.ns3:TrackPointExtension.ns3:power"))
       //all columns of interest have been extracted, so this struct column can now be dropped
       .drop("trackPointDetails")
-      .as[ActivityRecord]
 
-    unNestGPXDf(spark.read
-      .format("com.databricks.spark.xml")
-      .option("rowTag", "gpx")
-      .schema(rawGPXSchema)
-      .load(path))
+    //read the dataframe from the requested path
+    val rawGPXDf =
+      spark.read
+        .format("com.databricks.spark.xml")
+        .option("rowTag", "gpx")
+        .schema(rawGPXSchema)
+        .load(path)
+
+    //unnest the dataframe
+    val unNestedGPXDf = unNestGPXDf(rawGPXDf)
+
+    //add cumulative statistics and return
+    addCumulativeStatistics(unNestedGPXDf).as[ActivityRecord]
+
   }
 
 
