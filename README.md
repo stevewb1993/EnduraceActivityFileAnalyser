@@ -11,8 +11,8 @@ Converts activity files to a standardised format suitable for analysis. Supporte
   - calculatePersonalBests: provides personal bests over any given distance for each type of activity
 
 ### Future features will include:
-File Parser: Support for .fit files
-Analysis: generic analysis methods for all types of sensor data (power, cadence, heart rate etc)
+  - File Parser: Support for .fit files
+  - Analysis: generic analysis methods for all types of sensor data (power, cadence, heart rate etc)
 
 ### To access all your historic activity data: 
   - https://support.strava.com/hc/en-us/articles/216918437-Exporting-your-Data-and-Bulk-Export
