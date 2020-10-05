@@ -7,7 +7,7 @@ import org.apache.spark.sql.functions.{col, input_file_name, posexplode, udf}
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.{DataFrame, Dataset, SparkSession}
 import DistanceCalculator.addCumulativeStatistics
-import SpeedCalculator.addSmoothedSpeed
+import SmoothedStatsCalculator.addSmoothedDistanceElevation
 
 object FileParser {
 
@@ -21,6 +21,7 @@ object FileParser {
                               activityID: String,
                               parsedActivityType: String,
                               time: Timestamp,
+                              elevation: Double,
                               latitude: Double,
                               longitude: Double,
                               heartRate: Integer,
@@ -28,7 +29,8 @@ object FileParser {
                               power: Integer,
                               cumulativeDistanceKm: Double,
                               cumulativeTime: Long,
-                              smoothSpeedKmH: Double
+                              smoothSpeedKmH: Double,
+                              gradient: Double
                             )
 
   def readGPXToDataFrame (path: String, spark: SparkSession) : Dataset[ActivityRecord] = {
@@ -86,6 +88,7 @@ object FileParser {
       //this is the relative position of each sensor output in the activity
       .withColumnRenamed("pos", "activityTrackPoint")
       .withColumn("time", col("trackPointDetails.time"))
+      .withColumn("elevation", col("trackPointDetails.ele"))
       .withColumn("latitude", col("trackPointDetails._lat"))
       .withColumn("longitude", col("trackPointDetails._lon"))
       .withColumn("heartRate", col("trackPointDetails.extensions.ns3:TrackPointExtension.ns3:hr"))
@@ -109,7 +112,7 @@ object FileParser {
     val withDistanceDf = addCumulativeStatistics(unNestedGPXDf)
 
     //add smoothed speed and return
-    addSmoothedSpeed(withDistanceDf).as[ActivityRecord]
+    addSmoothedDistanceElevation(withDistanceDf, smoothingFactor = 5).as[ActivityRecord]
 
   }
 
