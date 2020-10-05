@@ -7,6 +7,7 @@ import org.apache.spark.sql.functions.{col, input_file_name, posexplode, udf}
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.{DataFrame, Dataset, SparkSession}
 import DistanceCalculator.addCumulativeStatistics
+import SpeedCalculator.addSmoothedSpeed
 
 object FileParser {
 
@@ -26,7 +27,8 @@ object FileParser {
                               cadence: Integer,
                               power: Integer,
                               cumulativeDistanceKm: Double,
-                              cumulativeTime: Long
+                              cumulativeTime: Long,
+                              smoothSpeedKmH: Double
                             )
 
   def readGPXToDataFrame (path: String, spark: SparkSession) : Dataset[ActivityRecord] = {
@@ -104,7 +106,10 @@ object FileParser {
     val unNestedGPXDf = unNestGPXDf(rawGPXDf)
 
     //add cumulative statistics and return
-    addCumulativeStatistics(unNestedGPXDf).as[ActivityRecord]
+    val withDistanceDf = addCumulativeStatistics(unNestedGPXDf)
+
+    //add smoothed speed and return
+    addSmoothedSpeed(withDistanceDf).as[ActivityRecord]
 
   }
 

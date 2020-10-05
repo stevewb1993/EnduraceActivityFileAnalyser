@@ -6,6 +6,8 @@ import com.stevebowser.enduranceactivityfileanalyser.fileparser.FileParser
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.{Dataset, SparkSession}
 import com.stevebowser.enduranceactivityfileanalyser.analysis.PersonalBestAnalyser.{calculateDistancePersonalBests, calculateSensorPersonalBests}
+import com.stevebowser.enduranceactivityfileanalyser.fileparser.FileParser.ActivityRecord
+
 import scala.io.Source
 
 object Analyser {
@@ -16,17 +18,17 @@ object Analyser {
       .config(getSparkAppConf)
       .getOrCreate()
 
-    val testActivityDataset : Dataset[FileParser.ActivityRecord] = FileParser.readGPXToDataFrame("Data/", spark)
+    val testActivityDataset : Dataset[ActivityRecord]  = FileParser.readGPXToDataFrame("Data/", spark)
 
-    testActivityDataset.show
+    testActivityDataset.show(100)
 
-    val personalBests = calculateDistancePersonalBests(testActivityDataset, 5)
-
-    personalBests.show
-
-    val sensorBests = calculateSensorPersonalBests(testActivityDataset, 600L)
-
-    sensorBests.show()
+    //val personalBests = calculateDistancePersonalBests(testActivityDataset, 5)
+//
+    //personalBests.show
+//
+    //val sensorBests = calculateSensorPersonalBests(testActivityDataset, 600L)
+//
+    //sensorBests.show()
 
     spark.stop()
 
