@@ -23,15 +23,15 @@ object Analyser {
 
     testActivityDataset.show(100)
 
-    //val personalBests = calculateDistancePersonalBests(testActivityDataset, 5)
-//
-    //personalBests.show
-//
-    //val sensorBests = calculateSensorPersonalBests(testActivityDataset, 600L)
-//
-    //sensorBests.show()
+    val personalBests = calculateDistancePersonalBests(testActivityDataset, 5)
 
-    RegressionModel.runRegression(testActivityDataset)
+    personalBests.show
+
+    val sensorBests = calculateSensorPersonalBests(testActivityDataset, 600L)
+
+    sensorBests.show()
+
+    //RegressionModel.runRegression(testActivityDataset)
 
     spark.stop()
 
