@@ -6,6 +6,7 @@ import com.stevebowser.enduranceactivityfileanalyser.fileparser.FileParser
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.{Dataset, SparkSession}
 import com.stevebowser.enduranceactivityfileanalyser.analysis.PersonalBestAnalyser.{calculateDistancePersonalBests, calculateSensorPersonalBests}
+import com.stevebowser.enduranceactivityfileanalyser.analysis.RegressionModel
 import com.stevebowser.enduranceactivityfileanalyser.fileparser.FileParser.ActivityRecord
 
 import scala.io.Source
@@ -29,6 +30,8 @@ object Analyser {
     //val sensorBests = calculateSensorPersonalBests(testActivityDataset, 600L)
 //
     //sensorBests.show()
+
+    RegressionModel.runRegression(testActivityDataset)
 
     spark.stop()
 

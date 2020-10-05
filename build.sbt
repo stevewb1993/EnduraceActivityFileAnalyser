@@ -19,6 +19,8 @@ val testDependencies = Seq(
 
 libraryDependencies ++= sparkDependencies ++ testDependencies
 
+libraryDependencies += "org.apache.spark" %% "spark-mllib" % "3.0.1"
+
 libraryDependencies += "com.databricks" %% "spark-xml" % "0.10.0"
 
 libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.0"

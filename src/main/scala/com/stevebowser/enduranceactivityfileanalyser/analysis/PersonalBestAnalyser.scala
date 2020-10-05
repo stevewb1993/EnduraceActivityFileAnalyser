@@ -9,8 +9,8 @@ object PersonalBestAnalyser {
 
   def calculateDistancePersonalBests(ds: Dataset[ActivityRecord], distance : Int) : DataFrame = {
 
-    //create window for each activity that represents the distance window specifed
-    val rollingActivityTDistanceWindow = Window.partitionBy("activityId").orderBy("cumulativeDistanceKm").rangeBetween(-distance,0) //the previous two hours
+    //create window for each activity that represents the distance window specified
+    val rollingActivityTDistanceWindow = Window.partitionBy("activityId").orderBy("cumulativeDistanceKm").rangeBetween(-distance,0)
 
     val rollingIntervalTime = ds
       //the min cumulative time in the window represents the start time of the athlete completing the requisite distance relative to their current positition
