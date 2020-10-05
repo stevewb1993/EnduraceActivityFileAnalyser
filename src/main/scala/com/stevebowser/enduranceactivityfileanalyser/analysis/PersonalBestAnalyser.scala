@@ -1,6 +1,7 @@
 package com.stevebowser.enduranceactivityfileanalyser.analysis
 
 import com.stevebowser.enduranceactivityfileanalyser.fileparser.FileParser.ActivityRecord
+import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.{DataFrame, Dataset}
 import org.apache.spark.sql.functions.{max, _}
 
@@ -8,41 +9,39 @@ object PersonalBestAnalyser {
 
   def calculateDistancePersonalBests(ds: Dataset[ActivityRecord], distance : Int) : DataFrame = {
 
-    //in order to calculate the personal bests in each activity, we must join the activity table onto itself to find all rows in the activity which have past the required distance
-    val allPointsGreaterThanRequiredDistance = genericActivityJoin(ds, distance, "cumulativeDistanceKm","outside")
+    //create window for each activity that represents the distance window specifed
+    val rollingActivityTDistanceWindow = Window.partitionBy("activityId").orderBy("cumulativeDistanceKm").rangeBetween(-distance,0) //the previous two hours
 
-    //within each point, we can now find the latest historic point for each point in the activity that was the mimimum distance away
-    val latestPointGreaterThanRequiredDistance = allPointsGreaterThanRequiredDistance
-      .groupBy("activityId", "activityTrackPoint", "cumulativeTime", "parsedActivityType")
-      .max("cumulativeTime2").alias("cumulativeTime2")
-      .withColumnRenamed("max(cumulativeTime2)", "cumulativeTime2")
-      .withColumn("timeDifference", col("cumulativeTime") - col("cumulativeTime2"))
+    val rollingIntervalTime = ds
+      //the min cumulative time in the window represents the start time of the athlete completing the requisite distance relative to their current positition
+      .withColumn("startTime", min("cumulativeTime") over(rollingActivityTDistanceWindow))
+      //time to complete distance is their current cumulative time minus the start time
+      .withColumn("intervalTime", col("cumulativeTime") - col("startTime"))
+      //remove cases where the required distance had not been completed
+      .filter(col("cumulativeDistanceKm") > distance)
 
     //now find the minimum time difference for the distance for each activity type
-    val fastestTimes = latestPointGreaterThanRequiredDistance
+    val fastestTimes = rollingIntervalTime
       .groupBy("parsedActivityType")
-      .min("timeDifference")
+      .min("intervalTime")
 
     fastestTimes
   }
 
   def calculateSensorPersonalBests (ds: Dataset[ActivityRecord], timeInterval : Long) : DataFrame = {
 
-    //in order to calculate the personal bests in each activity, we must join the activity table onto itself to find all rows in the activity which have past the required time interval
-    val allPointsGreaterThanRequiredTime = genericActivityJoin(ds, timeInterval, "cumulativeTime", "within")
+    //create window for each activity that represents the time window specifed
+    val rollingActivityTimeWindow = Window.partitionBy("activityId").orderBy("cumulativeTime").rangeBetween(-timeInterval,0) //the previous two hours
 
-    //within each point we can now calculate the average values for the sensor data over the requested time window
-    val latestPointGreaterThanRequiredTime = allPointsGreaterThanRequiredTime
-      //remove cases where the window being averaged is not greater than the requested time interval
-      .filter(col("cumulativeTime") > timeInterval)
-      //calculate rolling overages
-      .groupBy("activityId", "activityTrackPoint", "parsedActivityType")
-      .agg(mean("heartRate2").alias("rollingHeartRate"),
-        mean("power2").alias("rollingPower"),
-        mean("cadence2").alias("rollingCadence")
-      )
+    val rollingSensorData = ds
+      .withColumn("rollingPower", avg("power") over(rollingActivityTimeWindow))
+      .withColumn("rollingHeartRate", avg("heartRate") over(rollingActivityTimeWindow))
+      .withColumn("rollingCadence", avg("cadence") over(rollingActivityTimeWindow))
+
     //find the highest and lowest average over the time window
-    latestPointGreaterThanRequiredTime
+    rollingSensorData
+      //filter for points where the time in the activity is long enough
+      .filter(col("cumulativeTime") > timeInterval)
       .groupBy("parsedActivityType")
       .agg(
         min("rollingCadence").alias("minCadence"),
@@ -51,41 +50,6 @@ object PersonalBestAnalyser {
         max("rollingHeartRate").alias("maxHeartRate"),
         min("rollingPower").alias("minPower") ,
         max("rollingPower").alias("maxPower"))
-
-  }
-
-
-  private def genericActivityJoin (ds : Dataset[ActivityRecord], intervalLength : Long, intervalType : String, withinOrOutSideInterval : String) = {
-
-    //intervalType must be set to either cumulativeTime or CumulativeDistance.
-    //interval length must be > 0
-    //Figure out how to do error handling for this
-
-    //in order to calculate the personal bests in each activity, we must join the activity table onto itself to find all rows in the activity which have past the required distance
-    val ds2 = ds
-      //rename required columns to prevent clashes
-      .withColumnRenamed("activityId", "activityId2")
-      .withColumnRenamed("activityTrackPoint", "activityTrackPoint2")
-      .withColumnRenamed("cumulativeDistanceKm", "cumulativeDistanceKm2")
-      .withColumnRenamed("parsedActivityType", "parsedActivityType2")
-      .withColumnRenamed("cumulativeTime", "cumulativeTime2")
-      .withColumnRenamed("heartRate", "heartRate2")
-      .withColumnRenamed("cadence", "cadence2")
-      .withColumnRenamed("power", "power2")
-
-
-    val selfJoinExpression = if (withinOrOutSideInterval == "within") {
-      ds.col("activityId") === ds2.col("activityId2") and
-      ds.col("activityTrackPoint") > ds2.col("activityTrackPoint2") and
-      ds.col(intervalType) < ds2.col(intervalType + 2) + intervalLength
-    }
-    else {
-      ds.col("activityId") === ds2.col("activityId2") and
-      ds.col("activityTrackPoint") > ds2.col("activityTrackPoint2") and
-      ds.col(intervalType) > ds2.col(intervalType + 2) + intervalLength
-    }
-
-    ds.join(ds2,selfJoinExpression,"inner");
 
   }
 
