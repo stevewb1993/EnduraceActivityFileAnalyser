@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de4b3ef0-408c-4464-aca8-03b6ea67f51c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/Analyser.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/Analyser.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/analysis/RegressionModel.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/analysis/RegressionModel.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,9 +42,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.scala" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
@@ -125,7 +124,6 @@
       <option name="showProgressMessages" value="true" />
       <option name="testArgs" value="" />
       <option name="testClassPath" value="com.stevebowser.enduranceactivityfileanalyser.fileparser.DistanceCalculatorTest" />
-      <option name="testName" value="addCumulativeStatistics should show a cumulative time of 60 (seconds) when difference in time is 1 minute" />
       <option name="useSbt" value="false" />
       <option name="useUiWithSbt" value="false" />
       <option name="workingDirectory" value="C:\Users\Steve\source\repos\EnduranceActivityFileAnalyser2" />
@@ -205,22 +203,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="550" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601720660416" />
-    <state width="1537" height="227" key="GridCell.Tab.0.bottom" timestamp="1601902404409">
+    <state width="1537" height="227" key="GridCell.Tab.0.bottom" timestamp="1601997675642">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="227" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601902404409" />
-    <state width="1537" height="227" key="GridCell.Tab.0.center" timestamp="1601902404408">
+    <state width="1537" height="227" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601997675642" />
+    <state width="1537" height="227" key="GridCell.Tab.0.center" timestamp="1601997675642">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="227" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1601902404408" />
-    <state width="1537" height="227" key="GridCell.Tab.0.left" timestamp="1601902404408">
+    <state width="1537" height="227" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1601997675642" />
+    <state width="1537" height="227" key="GridCell.Tab.0.left" timestamp="1601997675641">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="227" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1601902404408" />
-    <state width="1537" height="227" key="GridCell.Tab.0.right" timestamp="1601902404409">
+    <state width="1537" height="227" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1601997675641" />
+    <state width="1537" height="227" key="GridCell.Tab.0.right" timestamp="1601997675642">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1537" height="227" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1601902404409" />
+    <state width="1537" height="227" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1601997675642" />
     <state width="1537" height="282" key="GridCell.Tab.1.bottom" timestamp="1601825368424">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -257,9 +255,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="426" y="188" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1601894164655" />
-    <state x="426" y="67" width="672" height="676" key="search.everywhere.popup" timestamp="1601833449298">
+    <state x="426" y="67" width="672" height="676" key="search.everywhere.popup" timestamp="1601995943597">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="426" y="67" width="672" height="676" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1601833449298" />
+    <state x="426" y="67" width="672" height="676" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1601995943597" />
   </component>
 </project>
