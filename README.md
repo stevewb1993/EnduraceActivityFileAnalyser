@@ -10,6 +10,7 @@ Converts activity files to a standardised format suitable for analysis. Supporte
  Uses the standardised format defined through the file parser to provide aggregated analytics. Features are:
   - calculateDistancePersonalBests: provides personal bests over any given distance for each type of activity
   - calculateSensorPersonalBests: provides analysis of top performances for sensor data (heart rate, cadence, power) over a given time range
+  - run regression analysis for any given set of input features
 
 ### Future features will include:
   - File Parser: Support for .fit files

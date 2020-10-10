@@ -21,26 +21,25 @@ object Analyser {
       .config(getSparkAppConf)
       .getOrCreate()
 
+    //read data
     val testActivityDataset : Dataset[ActivityRecord]  = FileParser.readGPXToDataFrame("Data/", spark)
 
-    testActivityDataset.show(100)
+    //show personal bests over any given distance
+    val personalBests = calculateDistancePersonalBests(testActivityDataset, 5)
+    personalBests.show
 
-    //val personalBests = calculateDistancePersonalBests(testActivityDataset, 5)
-//
-    //personalBests.show
-//
-    //val sensorBests = calculateSensorPersonalBests(testActivityDataset, 600L)
-//
-    //sensorBests.show()
+    //show best performances for all sensor types over a given time interval
+    val sensorBests = calculateSensorPersonalBests(testActivityDataset, 600L)
+    sensorBests.show()
 
-
-    val trainingData= testActivityDataset
-      .withColumn("heartRate2", col("heartRate").cast(DoubleType))
-      .withColumn("cadence2", col("cadence").cast(DoubleType))
-
-    val inputCols : Array[String] = Array("heartRate2", "cadence2")
-    val outputcolumn = "smoothSpeedKmH"
-    RegressionModel.runLinearRegression(trainingData,inputCols,outputcolumn)
+    //run regression analysis
+    val inputCols : Array[String] = Array("heartRate", "cadence")
+    val outputColumn = "smoothSpeedKmH"
+    val activityType = "cycle"
+    val regressionModel = RegressionModel.runLinearRegression(testActivityDataset, inputCols, outputColumn, activityType)
+    // Print the coefficients and intercept for linear regression
+    println(s"Coefficients: ${regressionModel.coefficients} Intercept: ${regressionModel.intercept}")
+    println(s"r2: ${regressionModel.summary.r2}")
 
     spark.stop()
 
