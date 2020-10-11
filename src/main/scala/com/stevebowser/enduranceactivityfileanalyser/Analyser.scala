@@ -33,7 +33,7 @@ object Analyser {
     sensorBests.show()
 
     //run regression analysis
-    val inputCols : Array[String] = Array("heartRate", "cadence")
+    val inputCols : Array[String] = Array("heartRate", "cadence", "gradient")
     val outputColumn = "smoothSpeedKmH"
     val activityType = "cycle"
     val regressionModel = RegressionModel.runLinearRegression(testActivityDataset, inputCols, outputColumn, activityType)

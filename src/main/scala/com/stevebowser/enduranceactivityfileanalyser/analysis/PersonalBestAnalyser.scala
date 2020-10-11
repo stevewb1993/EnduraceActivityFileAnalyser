@@ -21,11 +21,9 @@ object PersonalBestAnalyser {
       .filter(col("cumulativeDistanceKm") > distance)
 
     //now find the minimum time difference for the distance for each activity type
-    val fastestTimes = rollingIntervalTime
+    rollingIntervalTime
       .groupBy("parsedActivityType")
       .min("intervalTime")
-
-    fastestTimes
   }
 
   def calculateSensorPersonalBests (ds: Dataset[ActivityRecord], timeInterval : Long) : DataFrame = {
