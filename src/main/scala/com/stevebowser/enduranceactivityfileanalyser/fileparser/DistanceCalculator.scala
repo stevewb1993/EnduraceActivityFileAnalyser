@@ -2,7 +2,6 @@ package com.stevebowser.enduranceactivityfileanalyser.fileparser
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.functions._
-import org.apache.spark.sql.types.DataType
 
 private object DistanceCalculator {
 

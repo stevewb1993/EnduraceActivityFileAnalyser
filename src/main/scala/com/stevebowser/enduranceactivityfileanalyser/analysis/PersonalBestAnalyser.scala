@@ -3,7 +3,7 @@ package com.stevebowser.enduranceactivityfileanalyser.analysis
 import com.stevebowser.enduranceactivityfileanalyser.fileparser.FileParser.ActivityRecord
 import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.{DataFrame, Dataset}
-import org.apache.spark.sql.functions.{max, _}
+import org.apache.spark.sql.functions._
 
 object PersonalBestAnalyser {
 

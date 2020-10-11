@@ -1,14 +1,11 @@
 package com.stevebowser.enduranceactivityfileanalyser.analysis
 import com.stevebowser.enduranceactivityfileanalyser.fileparser.FileParser.ActivityRecord
-import org.apache.spark.ml.Pipeline
-import org.apache.spark.ml.feature.VectorAssembler
 import org.apache.spark.sql._
 import org.apache.spark.ml.regression.LinearRegression
 import org.apache.spark.ml.feature.VectorAssembler
-import org.apache.spark.ml.linalg.Vectors
 import org.apache.spark.ml.regression.LinearRegressionModel
 import org.apache.spark.sql.functions._
-import org.apache.spark.sql.types.{DoubleType, StringType}
+
 
 
 

@@ -6,7 +6,7 @@ import org.apache.spark.sql.functions._
 
 object SmoothedStatsCalculator {
 
-  def addSmoothedDistanceElevation(df : DataFrame, smoothingFactor: Int) = {
+  def addSmoothedDistanceElevation(df : DataFrame, smoothingFactor: Int): DataFrame = {
 
     //window for calculating speed. Look +- the smoothingFactor
     val rollingTimeWindow = Window.partitionBy("activityId").orderBy("cumulativeTime").rangeBetween(-smoothingFactor, smoothingFactor)
@@ -14,7 +14,7 @@ object SmoothedStatsCalculator {
       //calculate time change over time window (cannot assume the smooth factor due to edge cases). change into hours to help with units
       .withColumn("startTime", min("cumulativeTime") over rollingTimeWindow)
       .withColumn("endTime", max("cumulativeTime") over rollingTimeWindow)
-      .withColumn("timeChange", (col("endTime") - col("startTime")))
+      .withColumn("timeChange", col("endTime") - col("startTime"))
         //change timeChange to hours to ensure correct units
       .withColumn("timeChangeHours",
         when(col("timeChange") > 0, col("timeChange") / 3600)

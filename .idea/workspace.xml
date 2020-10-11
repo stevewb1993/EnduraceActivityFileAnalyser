@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de4b3ef0-408c-4464-aca8-03b6ea67f51c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/Analyser.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/Analyser.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/analysis/PersonalBestAnalyser.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/analysis/PersonalBestAnalyser.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/analysis/RegressionModel.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/analysis/RegressionModel.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/fileparser/DistanceCalculator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/fileparser/DistanceCalculator.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/fileparser/SmoothedStatsCalculator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/stevebowser/enduranceactivityfileanalyser/fileparser/SmoothedStatsCalculator.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
